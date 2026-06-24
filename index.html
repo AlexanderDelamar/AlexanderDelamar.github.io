@@ -6,53 +6,94 @@
 
 <title>Mis 15 Años</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI', sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background: linear-gradient(135deg,#f8e8f0,#f4d6e8);
-    min-height:100vh;
+    font-family:'Poppins',sans-serif;
+    color:white;
+    background:black;
+}
+
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.6)),
+    url('fondo.jpg');
+    background-size:cover;
+    background-position:center;
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:20px;
-}
-
-.container{
-    max-width:900px;
-    width:100%;
-    background:white;
-    border-radius:20px;
-    padding:40px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
-h1{
-    font-size:3rem;
-    color:#b76e79;
-    margin-bottom:10px;
+.hero-content h1{
+    font-family:'Great Vibes',cursive;
+    font-size:6rem;
+    margin-bottom:20px;
 }
 
-h2{
+.hero-content h2{
+    font-size:2rem;
     font-weight:300;
-    color:#555;
+}
+
+.scroll{
+    margin-top:30px;
+    font-size:1rem;
+    opacity:.8;
+}
+
+.section{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.section h2{
+    font-size:3rem;
     margin-bottom:30px;
+}
+
+.countdown{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.time-box{
+    background:rgba(255,255,255,.1);
+    backdrop-filter:blur(10px);
+    padding:25px;
+    border-radius:20px;
+    min-width:120px;
+}
+
+.time-box span{
+    display:block;
+    font-size:3rem;
+    font-weight:bold;
 }
 
 .photo{
     width:250px;
     height:250px;
-    margin:auto;
     border-radius:50%;
     overflow:hidden;
-    border:6px solid #b76e79;
-    margin-bottom:30px;
+    margin:40px auto;
+    border:5px solid white;
 }
 
 .photo img{
@@ -61,168 +102,286 @@ h2{
     object-fit:cover;
 }
 
-.countdown{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-    margin:30px 0;
+.details{
+    font-size:1.2rem;
+    line-height:2;
 }
 
-.box{
-    background:#b76e79;
-    color:white;
-    width:110px;
-    padding:20px 10px;
-    border-radius:15px;
-}
-
-.box span{
-    display:block;
-    font-size:2rem;
-    font-weight:bold;
-}
-
-.box small{
-    font-size:0.9rem;
-}
-
-.info{
-    margin-top:20px;
-    color:#444;
-    font-size:1.1rem;
-    line-height:1.8;
+.buttons{
+    margin-top:40px;
 }
 
 .btn{
     display:inline-block;
-    margin-top:30px;
     padding:15px 30px;
-    background:#25D366;
-    color:white;
-    text-decoration:none;
+    margin:10px;
     border-radius:50px;
-    font-size:1.1rem;
+    text-decoration:none;
+    color:white;
     transition:.3s;
+}
+
+.maps{
+    background:#4285F4;
+}
+
+.whatsapp{
+    background:#25D366;
 }
 
 .btn:hover{
     transform:scale(1.05);
 }
 
-.footer{
-    margin-top:30px;
-    color:#888;
-    font-size:0.9rem;
+footer{
+    padding:40px;
+    text-align:center;
+    background:#111;
 }
 
-@media(max-width:600px){
-    h1{
-        font-size:2.2rem;
-    }
-
-    .box{
-        width:90px;
-    }
-
-    .box span{
-        font-size:1.5rem;
-    }
+#particles{
+    position:fixed;
+    inset:0;
+    z-index:-1;
 }
+
+.music-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:white;
+    color:black;
+    border:none;
+    border-radius:50px;
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.hero-content h1{
+    font-size:4rem;
+}
+
+.hero-content h2{
+    font-size:1.3rem;
+}
+
+.time-box{
+    min-width:90px;
+}
+
+.time-box span{
+    font-size:2rem;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<canvas id="particles"></canvas>
 
-    <h1>Mis 15 Años</h1>
-    <h2>Pelo Brilli Brilli</h2>
+<button class="music-btn" onclick="toggleMusic()">
+🎵 Música
+</button>
 
-    <div class="photo">
-        <img src="foto.jpeg" alt="Foto">
-    </div>
+<audio id="music" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-    <p>Faltan...</p>
+<section class="hero">
 
-    <div class="countdown">
-        <div class="box">
-            <span id="days">0</span>
-            <small>Días</small>
-        </div>
+<div class="hero-content">
 
-        <div class="box">
-            <span id="hours">0</span>
-            <small>Horas</small>
-        </div>
+<h1>Valentina</h1>
 
-        <div class="box">
-            <span id="minutes">0</span>
-            <small>Minutos</small>
-        </div>
+<h2>Mis 15 Años</h2>
 
-        <div class="box">
-            <span id="seconds">0</span>
-            <small>Segundos</small>
-        </div>
-    </div>
-
-    <div class="info">
-        <p><strong>Fecha:</strong> 18 de Septiembre de 2027</p>
-        <p><strong>Hora:</strong> Ni idea, pero ponele que sea a las 21:00 hs</p>
-        <p><strong>Lugar:</strong> No tengo ni la mas puta idea, la gorda pelotuda no me dijo</p>
-    </div>
-
-    <a class="btn"
-       href="https://wa.me/59895339615?text=Confirmo%20mi%20asistencia"
-       target="_blank">
-       Confirmar Asistencia
-    </a>
-
-    <div class="footer">
-        ¡Te espero para compartir una noche inolvidable!
-    </div>
+<div class="scroll">
+▼ Deslizá para descubrir tu invitación ▼
+</div>
 
 </div>
 
+</section>
+
+<section class="section">
+
+<div class="photo">
+<img src="foto-principal.jpg">
+</div>
+
+<h2>Cuenta Regresiva</h2>
+
+<div class="countdown">
+
+<div class="time-box">
+<span id="days">0</span>
+Días
+</div>
+
+<div class="time-box">
+<span id="hours">0</span>
+Horas
+</div>
+
+<div class="time-box">
+<span id="minutes">0</span>
+Minutos
+</div>
+
+<div class="time-box">
+<span id="seconds">0</span>
+Segundos
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2>Te Espero</h2>
+
+<div class="details">
+
+📅 18 de Septiembre de 2027<br>
+🕘 21:00 hs<br>
+📍 Salón de Eventos<br>
+
+</div>
+
+<div class="buttons">
+
+<a class="btn maps"
+href="https://maps.google.com"
+target="_blank">
+Ver Ubicación
+</a>
+
+<a class="btn whatsapp"
+href="https://wa.me/59895339615?text=Confirmo%20mi%20asistencia"
+target="_blank">
+Confirmar Asistencia
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+✨ Gracias por acompañarme en este momento tan especial ✨
+
+</footer>
+
 <script>
 
-// Fecha del evento
-const eventDate = new Date("Sep 18, 2027 21:00:00").getTime();
+// CONTADOR
 
-const timer = setInterval(() => {
+const eventDate =
+new Date("September 18, 2027 21:00:00").getTime();
 
-    const now = new Date().getTime();
-    const distance = eventDate - now;
+setInterval(()=>{
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24))
-        / (1000 * 60 * 60)
-    );
+const now = new Date().getTime();
+const diff = eventDate-now;
 
-    const minutes = Math.floor(
-        (distance % (1000 * 60 * 60))
-        / (1000 * 60)
-    );
+document.getElementById("days").innerHTML =
+Math.floor(diff/(1000*60*60*24));
 
-    const seconds = Math.floor(
-        (distance % (1000 * 60))
-        / 1000
-    );
+document.getElementById("hours").innerHTML =
+Math.floor((diff%(1000*60*60*24))/(1000*60*60));
 
-    document.getElementById("days").innerHTML = days;
-    document.getElementById("hours").innerHTML = hours;
-    document.getElementById("minutes").innerHTML = minutes;
-    document.getElementById("seconds").innerHTML = seconds;
+document.getElementById("minutes").innerHTML =
+Math.floor((diff%(1000*60*60))/(1000*60));
 
-    if(distance < 0){
-        clearInterval(timer);
-        document.querySelector(".countdown").innerHTML =
-        "<h2>¡El gran día llegó!</h2>";
-    }
+document.getElementById("seconds").innerHTML =
+Math.floor((diff%(1000*60))/1000);
 
 },1000);
+
+// MUSICA
+
+const music =
+document.getElementById("music");
+
+function toggleMusic(){
+
+if(music.paused){
+music.play();
+}
+else{
+music.pause();
+}
+
+}
+
+// PARTICULAS
+
+const canvas =
+document.getElementById('particles');
+
+const ctx =
+canvas.getContext('2d');
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<120;i++){
+
+particles.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+d:Math.random()*2
+
+});
+
+}
+
+function draw(){
+
+ctx.clearRect(
+0,0,
+canvas.width,
+canvas.height
+);
+
+ctx.fillStyle=
+'rgba(255,255,255,.8)';
+
+particles.forEach(p=>{
+
+ctx.beginPath();
+ctx.arc(
+p.x,p.y,p.r,
+0,Math.PI*2
+);
+ctx.fill();
+
+p.y+=p.d;
+
+if(p.y>canvas.height){
+p.y=0;
+}
+
+});
+
+requestAnimationFrame(draw);
+
+}
+
+draw();
 
 </script>
 
